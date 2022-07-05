@@ -1,5 +1,6 @@
 import * as L from "leaflet";
-import { Data, dogs } from "./data";
+import type { Layer } from "./types";
+import aggressiveDogs from "./data/aggressive_dogs";
 //
 import "leaflet/dist/leaflet.css";
 import "./style.css";
@@ -16,29 +17,18 @@ L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
 	maxZoom: 20,
 }).addTo(map);
 
-const controlPanel = L.control.layers({}, {}).addTo(map);
+const allLayers: Layer[][] = [
+	[aggressiveDogs],
+];
+for (const layers of allLayers) {
+	const controlPanel = L.control.layers({}, {}, { collapsed: false }).addTo(map);
 
-const addDataToMap = (data: Data) => {
-	let layers: L.Control.LayersObject = {};
-	for (const layer of data.layers) {
-		// Based on 'map-pin' from https://phosphoricons.com/
-		const markerIcon = new L.DivIcon({
-			html: `
-			<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
-				<rect width="256" height="256" fill="none"></rect>
-				<path d="M208,104c0,72-80,128-80,128S48,176,48,104a80,80,0,0,1,160,0Z" fill="${layer.color}" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path>
-				<circle cx="128" cy="104" r="32" fill="#ffffff" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></circle>
-			</svg>
-			`,
-			iconSize: [32, 32],
-			popupAnchor: [0, -12],
-		});
-
+	for (const layer of layers) {
 		let markers: L.Marker[] = [];
 		for (const point of layer.points) {
 			const marker = L.marker(
 				{ lat: point.coords.lat, lng: point.coords.long },
-				{ title: point.title, icon: markerIcon },
+				{ title: point.title, icon: layer.icon },
 			);
 
 			let popup = `<h3>${point.title}</h3>`;
@@ -50,16 +40,9 @@ const addDataToMap = (data: Data) => {
 			markers.push(marker);
 		}
 
-		layers[`${data.title}: ${layer.title}`] = L.layerGroup(markers);
+		// Add an layer on overlay and display it
+		const layerGroup = L.layerGroup(markers);
+		controlPanel.addOverlay(layerGroup, layer.title);
+		layerGroup.addTo(map);
 	}
-
-	// Add layers on overlay and display them
-	for (const layerName in layers) {
-		const layer = layers[layerName];
-
-		controlPanel.addOverlay(layer, layerName);
-		layer.addTo(map);
-	}
-};
-
-addDataToMap(dogs);
+}
