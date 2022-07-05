@@ -1,14 +1,10 @@
-import * as L from "leaflet";
 import { Layer } from "../types";
+import { newIcon } from "./icons";
+import icon from "../icons/aggressive_dog.svg";
 
 export default {
 	title: "Агрессивные собаки",
-	// Icon source: https://phosphoricons.com/
-	icon: new L.DivIcon({
-		html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#b90004" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M240,108a28,28,0,1,1-28-28A28.1,28.1,0,0,1,240,108ZM72,108a28,28,0,1,0-28,28A28.1,28.1,0,0,0,72,108ZM92,88A28,28,0,1,0,64,60,28.1,28.1,0,0,0,92,88Zm72,0a28,28,0,1,0-28-28A28.1,28.1,0,0,0,164,88Zm23.1,60.8a35.3,35.3,0,0,1-16.9-21.1,43.9,43.9,0,0,0-84.4,0A35.5,35.5,0,0,1,69,148.8,40,40,0,0,0,88,224a40.5,40.5,0,0,0,15.5-3.1,64.2,64.2,0,0,1,48.9-.1A39.6,39.6,0,0,0,168,224a40,40,0,0,0,19.1-75.2Z"></path></svg>`,
-		iconSize: [24, 24],
-		popupAnchor: [0, -12],
-	}),
+	icon: newIcon(icon),
 	points: [
 		{
 			coords: { lat: 40.1877306, long: 44.5149857 },
