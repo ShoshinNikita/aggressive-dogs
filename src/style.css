@@ -28,3 +28,16 @@ body {
 .leaflet-popup-content {
 	font-size: 15px;
 }
+
+.leaflet-control-layers-icon {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.leaflet-control-layers-icon>img {
+	position: initial;
+	/* Use !important because leaflet uses inline styles */
+	margin: 0 !important;
+	width: 20px !important;
+	height: 20px !important;
+}

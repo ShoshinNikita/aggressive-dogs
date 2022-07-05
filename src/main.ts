@@ -49,7 +49,8 @@ for (const layers of allLayers) {
 
 		// Add an layer on overlay and display it
 		const layerGroup = L.layerGroup(markers);
-		controlPanel.addOverlay(layerGroup, layer.title);
+		const layerName = `${layer.title} <span class="leaflet-control-layers-icon">${layer.icon.createIcon().outerHTML}</span>`;
+		controlPanel.addOverlay(layerGroup, layerName);
 		layerGroup.addTo(map);
 	}
 }
