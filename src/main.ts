@@ -4,6 +4,13 @@ import aggressiveDogs from "./data/aggressive_dogs";
 //
 import "leaflet/dist/leaflet.css";
 import "./style.css";
+import faviconIcon from "./icons/bike.svg";
+
+// Set favicon
+const favicon = document.createElement("link");
+favicon.rel = "icon";
+favicon.href = faviconIcon;
+document.getElementsByTagName("head")[0].appendChild(favicon);
 
 const map = L.map("map", {
 	center: [40.1673492, 44.531127], // center of Yerevan
