@@ -31,9 +31,7 @@ L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
 	maxZoom: 20,
 }).addTo(map);
 
-const allLayers: Layer[][] = [
-	[aggressiveDogs],
-];
+const allLayers: Layer[][] = [[aggressiveDogs]];
 for (const layers of allLayers) {
 	const controlPanel = L.control.layers({}, {}, { collapsed: false }).addTo(map);
 
@@ -42,7 +40,7 @@ for (const layers of allLayers) {
 		for (const point of layer.points) {
 			const marker = L.marker(
 				{ lat: point.coords.lat, lng: point.coords.long },
-				{ title: point.title, icon: layer.icon },
+				{ title: point.title, icon: layer.icon }
 			);
 
 			let popup = `<h3>${point.title}</h3>`;
@@ -56,7 +54,9 @@ for (const layers of allLayers) {
 
 		// Add an layer on overlay and display it
 		const layerGroup = L.layerGroup(markers);
-		const layerName = `${layer.title} <span class="leaflet-control-layers-icon">${layer.icon.createIcon().outerHTML}</span>`;
+		const layerName = `${layer.title} <span class="leaflet-control-layers-icon">${
+			layer.icon.createIcon().outerHTML
+		}</span>`;
 		controlPanel.addOverlay(layerGroup, layerName);
 		layerGroup.addTo(map);
 	}

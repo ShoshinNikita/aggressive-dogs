@@ -34,7 +34,7 @@ body {
 	vertical-align: bottom;
 }
 
-.leaflet-control-layers-icon>img {
+.leaflet-control-layers-icon > img {
 	position: initial;
 	/* Use !important because leaflet uses inline styles */
 	margin: 0 !important;

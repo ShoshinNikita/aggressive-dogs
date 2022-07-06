@@ -20,3 +20,11 @@ dev:
 build: COMMAND=yarn run build
 build:
 	@ ${RUN}
+
+check: COMMAND=yarn run check
+check:
+	@ ${RUN}
+
+format: COMMAND=yarn run format
+format:
+	@ ${RUN}

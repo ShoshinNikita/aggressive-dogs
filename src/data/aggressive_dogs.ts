@@ -4,9 +4,9 @@ import icon from "../icons/aggressive_dog.svg";
 
 enum Title {
 	One = "1 собака",
-	SmallPack = "Несколько собак",   // 2-3
-	MediumPack = "Стая собак",       // 3-6
-	LargePack = "Большая стая собак" // 7+
+	SmallPack = "Несколько собак", // 2-3
+	MediumPack = "Стая собак", // 3-6
+	LargePack = "Большая стая собак", // 7+
 }
 
 export default {
@@ -57,9 +57,7 @@ export default {
 		{
 			coords: { lat: 40.162704, long: 44.534569 },
 			title: Title.MediumPack,
-			comments: [
-				"4 собаки. Одна начала лаять, но не очень агрессивно. После окрика успокоилась",
-			],
+			comments: ["4 собаки. Одна начала лаять, но не очень агрессивно. После окрика успокоилась"],
 		},
 	],
 } as Layer;
