@@ -17,6 +17,13 @@ const map = L.map("map", {
 	zoom: 12,
 });
 
+const attributionPrefix = [
+	`<a href="https://leafletjs.com" title="A JavaScript library for interactive maps">Leaflet</a>`,
+	`<a href="https://www.cyclosm.org/" title="CyclOSM: OpenStreetMap-based bicycle map">CyclOSM</a>`,
+	`<a href="https://github.com/ShoshinNikita/cycling-in-armenia" title="Source Code">GitHub</a>`,
+].join(" | ");
+map.attributionControl.setPrefix(attributionPrefix);
+
 // Use CyclOSM map - https://www.cyclosm.org/
 L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png", {
 	attribution: `Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors`,
