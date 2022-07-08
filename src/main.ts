@@ -1,6 +1,7 @@
 import * as L from "leaflet";
 import type { Layer } from "./types";
 import aggressiveDogs from "./data/aggressive_dogs";
+import beautifulViews from "./data/beautiful_views";
 //
 import "leaflet/dist/leaflet.css";
 import "./style.css";
@@ -31,7 +32,7 @@ L.tileLayer("https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
 	maxZoom: 20,
 }).addTo(map);
 
-const allLayers: Layer[][] = [[aggressiveDogs]];
+const allLayers: Layer[][] = [[aggressiveDogs, beautifulViews]];
 for (const layers of allLayers) {
 	const controlPanel = L.control.layers({}, {}, { collapsed: false }).addTo(map);
 
@@ -44,8 +45,10 @@ for (const layers of allLayers) {
 			);
 
 			let popup = `<h3>${point.title}</h3>`;
-			for (const comment of point.comments) {
-				popup += `<p><q>${comment}</q></p>`;
+			if (point.comments) {
+				for (const comment of point.comments) {
+					popup += `<p><q>${comment}</q></p>`;
+				}
 			}
 			marker.bindPopup(popup);
 

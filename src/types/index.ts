@@ -8,8 +8,8 @@ export type Layer = {
 
 export type Point = {
 	title: string;
-	comments: string[];
 	coords: Location;
+	comments?: string[];
 };
 
 export type Location = {
